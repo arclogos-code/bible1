@@ -1,6 +1,7 @@
 import { Heading, Box, Button, Text, Link, Grid, GridItem } from "@chakra-ui/react"
 import { map, bookList } from '../lib/data'
 import { getAllChapterIds, getChapterData } from '../lib/chapters'
+import { List } from 'list.js'
 
 export default function Home(data) {
   return (
@@ -13,7 +14,7 @@ export default function Home(data) {
           data.paths.map((chapter, index) => (
             <Box w="100%" h="10">
               <Link href={`/chapters/${chapter.params.id}`} >
-                <Button colorScheme="teal">
+                <Button class="chapter" colorScheme="teal">
                   {chapter.params.id}
                 </Button>
               </Link>
@@ -21,7 +22,6 @@ export default function Home(data) {
           ))
         }
       </Grid>
-
     </Box>
   )
 }
