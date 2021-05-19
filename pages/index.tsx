@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { map, bookList } from '../lib/data'
+import { getAllPostIds } from '../../lib/posts'
 
 export default function Home() {
   return (
@@ -23,4 +24,12 @@ export default function Home() {
       }
     </>
   )
+}
+
+export async function getStaticPaths() {
+  const paths = getAllPostIds()
+  return {
+    paths,
+    fallback: false
+  }
 }
