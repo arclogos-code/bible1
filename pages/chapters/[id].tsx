@@ -1,15 +1,16 @@
-import { getAllPostIds, getPostData } from '../../lib/posts'
+import { getAllChapterIds, getChapterData } from '../../lib/chapters'
 
-export default function Post({ postData }) {
+export default function Post({ chapterData }) {
   return (
     <>
-      {postData}
+      {chapterData.id}
+      {chapterData.contentHtml}
     </>
   )
 }
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds()
+  const paths = getAllChapterIds()
   return {
     paths,
     fallback: false
@@ -17,10 +18,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id)
+  const chapterData = await getChapterData(params.id)
   return {
     props: {
-      postData
+      chapterData
     }
   }
 }
