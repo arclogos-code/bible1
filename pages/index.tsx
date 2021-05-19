@@ -3,9 +3,6 @@ import { map, bookList } from '../lib/data'
 import { getAllChapterIds, getChapterData } from '../lib/chapters'
 
 export default function Home(data) {
-
-  console.log(data)
-
   return (
     <Box>
       <Heading p="6">
