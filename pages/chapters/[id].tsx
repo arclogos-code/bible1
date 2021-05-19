@@ -4,9 +4,6 @@ import { Box, Heading, Text } from "@chakra-ui/react"
 export default function Post({ chapterData }) {
   return (
     <Box>
-      <Heading size="2xl">
-        {chapterData.id}
-      </Heading>
       <Text fontSize="3xl">
         {chapterData.contentHtml}
       </Text>
