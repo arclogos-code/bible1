@@ -7,7 +7,7 @@ export default function Home(data) {
   console.log(data)
 
   return (
-    <Box bg="gray.900" color="white">
+    <Box>
       <Heading p="6">
         Bible-slide.com
       </Heading>

@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider, Box } from "@chakra-ui/react"
 import Head from 'next/head'
 
 function MyApp({ Component, pageProps }) {
@@ -8,7 +8,9 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta charSet="euc-kr" />
       </Head>
-      <Component {...pageProps} />
+      <Box bg="gray.900" color="white">
+        <Component {...pageProps} />
+      </Box>
     </ChakraProvider>
   )
 }
