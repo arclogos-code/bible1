@@ -22,6 +22,7 @@ export default function Home(data) {
           ))
         }
       </Grid>
+      
     </Box>
   )
 }
