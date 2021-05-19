@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import remark from 'remark'
 import html from 'remark-html'
+import iconv from 'iconv-lite'
 
 const chaptersDirectory = path.join(process.cwd(), 'chapters')
 
@@ -43,10 +44,12 @@ export function getAllChapterIds() {
 
 export async function getChapterData(id) {
   const fullPath = path.join(chaptersDirectory, `${id}.txt`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const fileContents = fs.readFileSync(fullPath)
+
+  const euckr = iconv.decode(fileContents, 'euc-kr');
 
   // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents)
+  const matterResult = matter(euckr)
 
   // Use remark to convert markdown into HTML string
   const processedContent = await remark()

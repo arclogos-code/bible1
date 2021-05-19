@@ -1,11 +1,16 @@
 import { getAllChapterIds, getChapterData } from '../../lib/chapters'
+import { Box, Heading, Text } from "@chakra-ui/react"
 
 export default function Post({ chapterData }) {
   return (
-    <>
-      {chapterData.id}
-      {chapterData.contentHtml}
-    </>
+    <Box>
+      <Heading size="2xl">
+        {chapterData.id}
+      </Heading>
+      <Text fontSize="3xl">
+        {chapterData.contentHtml}
+      </Text>
+    </Box>
   )
 }
 
