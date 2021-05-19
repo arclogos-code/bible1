@@ -7,6 +7,7 @@ function MyApp({ Component, pageProps }) {
     <ChakraProvider>
       <Head>
         <meta charSet="euc-kr" />
+        <meta title="Bible-slide.com" />
       </Head>
       <Box bg="gray.900" color="white">
         <Component {...pageProps} />
