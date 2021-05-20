@@ -1,17 +1,16 @@
-import { Heading, Box, Button, Link, Flex } from "@chakra-ui/react"
-import { map, bookList } from '../lib/data'
+import { Heading, Box, Button, Link, Flex, propNames } from "@chakra-ui/react"
 import { getAllChapterIds, getChapterData } from '../lib/chapters'
 import dynamic from 'next/dynamic'
-import React, { useEffect } from "react";
+import { getChapterNameKR } from '../lib/converter'
 
 const Search = dynamic(() => import('../components/Search'), {
   ssr: false
 })
 
-export default function Home(data) {
+export default function Home(props: {}) {
   return (
     <Box>
-      <Box p="6"position="fixed" bg="gray.900" zIndex="100" w="full">
+      <Box p="6" position="fixed" bg="gray.900" zIndex="100" w="full">
         <Heading >
           Bible-slide.com
         </Heading>
@@ -20,13 +19,13 @@ export default function Home(data) {
         </Box>
       </Box>
       <Box id="chapters" pt="150px">
-        <Flex className="list" p="6" wrap="wrap">
+        <Flex className="list" p="6" wrap="wrap" overflow="scroll" h="calc(100vh - 150px)">
           {
-            data.paths.map((chapter, index) => (
-              <Flex w="200px" py="6">
-                <Link href={`/chapters/${chapter.params.id}`} key={index}>
+            props.paths.map((chapter, index) => (
+              <Flex w="200px" py="6" key={index}>
+                <Link href={`/chapters/${chapter.params.id}`}>
                   <Button className="chapter" colorScheme="teal">
-                    {chapter.params.id}
+                    {props.names[index]}
                   </Button>
                 </Link>
               </Flex>
@@ -34,15 +33,21 @@ export default function Home(data) {
           }
         </Flex>
       </Box>
-    </Box>
+    </Box >
   )
 }
 
 export async function getStaticProps({ params }) {
   const paths = getAllChapterIds()
+  const names = []
+  paths.map((object, index) => (
+    names.push(getChapterNameKR(object.params.id))
+  ))
   return {
     props: {
-      paths
+      paths,
+      names
     }
   }
 }
+
