@@ -31,14 +31,15 @@ export async function getStaticPaths() {
 }
 
 function convert(raw) {
-  raw = raw.replace(/<[^>]+>/g, '');
-  let lineList = raw.match(/\d+\W+/g);
+  raw = raw.replace(/<[^>]+>/g, '').trim();
+  let lineList = raw.split(/\r?\n/g);
   let verseList = [];
   lineList.map((line, index) => {
-    var verse = line.match(/(?<number>\d+)\s(?<text>\W*)/).groups;
+    line = line.replace(/(?:\\[rn]|[\r\n]+)+/g, '').trim()
+    var verseGroup = line.match(/(?<number>\d+)\s(?<text>.*)/).groups;
     verseList.push({
-      number: verse.number,
-      verse: verse.text.replace(/(?:\\[rn]|[\r\n]+)+/g, '')
+      number: verseGroup.number,
+      verse: verseGroup.text
     })
   });
   return verseList
