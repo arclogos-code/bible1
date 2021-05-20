@@ -1,4 +1,4 @@
-import { Heading, Box, Button, Input, Link, Grid } from "@chakra-ui/react"
+import { Heading, Box, Button, Link, Flex } from "@chakra-ui/react"
 import { map, bookList } from '../lib/data'
 import { getAllChapterIds, getChapterData } from '../lib/chapters'
 import dynamic from 'next/dynamic'
@@ -11,24 +11,28 @@ const Search = dynamic(() => import('../components/Search'), {
 export default function Home(data) {
   return (
     <Box>
-      <Heading p="6">
-        Bible-slide.com
-      </Heading>
-      <Box>
-        <Search />
+      <Box p="6"position="fixed" bg="gray.900" zIndex="100" w="full">
+        <Heading >
+          Bible-slide.com
+        </Heading>
+        <Box mt="6" maxW="300px">
+          <Search />
+        </Box>
       </Box>
-      <Box id="chapters">
-        <Grid className="list" templateColumns="repeat(5, 1fr)" gap={5} p="6">
+      <Box id="chapters" pt="150px">
+        <Flex className="list" p="6" wrap="wrap">
           {
             data.paths.map((chapter, index) => (
-              <Link href={`/chapters/${chapter.params.id}`} key={index}>
-                <Button className="chapter" colorScheme="teal">
-                  {chapter.params.id}
-                </Button>
-              </Link>
+              <Flex w="200px" py="6">
+                <Link href={`/chapters/${chapter.params.id}`} key={index}>
+                  <Button className="chapter" colorScheme="teal">
+                    {chapter.params.id}
+                  </Button>
+                </Link>
+              </Flex>
             ))
           }
-        </Grid>
+        </Flex>
       </Box>
     </Box>
   )
