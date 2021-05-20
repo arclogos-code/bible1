@@ -20,6 +20,7 @@ export default function Chapter({
         event.preventDefault();
       } else {
         // Go to next chapter
+        event.preventDefault();
       }
     } else if (event.keyCode === 38) {
       if (hash > 1) {
