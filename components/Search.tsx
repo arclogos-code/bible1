@@ -13,6 +13,6 @@ export default function SearchFilterInput(props) {
   };
 
   return (
-    <Input className="search" onKeyUp={handle} {...props} size="lg" fontSize="x-large" />
+    <Input className="search" onKeyUp={handle} {...props} size="lg" fontSize="x-large" autoFocus />
   )
 }
