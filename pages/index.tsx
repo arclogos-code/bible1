@@ -17,17 +17,19 @@ export default function Home(data) {
       <Box>
         <Search />
       </Box>
-      <Grid className="chapterList" templateColumns="repeat(5, 1fr)" gap={5} p="6">
-        {
-          data.paths.map((chapter, index) => (
-            <Link href={`/chapters/${chapter.params.id}`} key={index}>
-              <Button className="chapter" colorScheme="teal">
-                {chapter.params.id}
-              </Button>
-            </Link>
-          ))
-        }
-      </Grid>
+      <Box id="chapters">
+        <Grid className="list" templateColumns="repeat(5, 1fr)" gap={5} p="6">
+          {
+            data.paths.map((chapter, index) => (
+              <Link href={`/chapters/${chapter.params.id}`} key={index}>
+                <Button className="chapter" colorScheme="teal">
+                  {chapter.params.id}
+                </Button>
+              </Link>
+            ))
+          }
+        </Grid>
+      </Box>
     </Box>
   )
 }

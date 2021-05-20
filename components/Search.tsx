@@ -3,13 +3,17 @@ import React, { useEffect } from "react";
 import List from 'list.js'
 
 export default function createSearchFilter() {
-  const options = {
+
+  const listObject = new List('chapters', {
     valueNames: ['chapter']
+  });
+
+  const handle = (event) => {
+    let query = event.target.value
+    listObject.search(query);
   };
-  const list = new List('chapterList', options);
-  console.log(list)
 
   return (
-    <Input className="search" />
+    <Input className="search" onKeyUp={handle} />
   )
 }
