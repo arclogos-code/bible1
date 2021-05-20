@@ -4,6 +4,7 @@ import { getAllChapterIds, getChapterData } from '../lib/chapters'
 import { List } from 'list.js'
 
 export default function Home(data) {
+
   return (
     <Box>
       <Heading p="6">
@@ -22,7 +23,7 @@ export default function Home(data) {
           ))
         }
       </Grid>
-      
+
     </Box>
   )
 }
