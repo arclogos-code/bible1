@@ -14,7 +14,7 @@ export function toggleFullScreen() {
       document.documentElement.mozRequestFullScreen();
     } else if (document.documentElement.webkitRequestFullscreen) {
       document.documentElement.webkitRequestFullscreen(
-        Element.ALLOW_KEYBOARD_INPUT
+        (<any>Element).ALLOW_KEYBOARD_INPUT
       );
     }
   } else {
