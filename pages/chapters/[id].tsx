@@ -12,7 +12,7 @@ export default function Chapter({ verseList }) {
                 <Text h="fit-content" fontSize="4xl" mr="10" mt="3">
                   {number}
                 </Text>
-                <Text h="fit-content" fontSize="6xl" fontWeight="semibold" w="80vw">
+                <Text h="fit-content" fontSize="6xl" fontWeight="semibold" w="80vw" lineHeight="tall">
                   {verse}
                 </Text>
               </Flex>
