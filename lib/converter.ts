@@ -8,6 +8,10 @@ function addressToBookAndIndex(address: string) {
   }
 }
 
+export function getAddressFromPath(path) {
+  return path.substring(path.lastIndexOf('/') + 1)
+}
+
 export function getNextChapterName(address: string) {
   const object = addressToBookAndIndex(address)
   const bookIndex = bookList.indexOf(object.bookName)
