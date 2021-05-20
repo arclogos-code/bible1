@@ -3,10 +3,10 @@ import { map, bookList } from '../lib/data'
 import { getAllChapterIds, getChapterData } from '../lib/chapters'
 import dynamic from 'next/dynamic'
 import React, { useEffect } from "react";
-// import List from 'list.js'
 
-// const Component = dynamic(() => import('../components/Search'))
-// const List = dynamic(() => import('list.js'))
+const Search = dynamic(() => import('../components/Search'), {
+  ssr: false
+})
 
 export default function Home(data) {
   return (
@@ -14,7 +14,9 @@ export default function Home(data) {
       <Heading p="6">
         Bible-slide.com
       </Heading>
-      <Input className="search" />
+      <Box>
+        <Search />
+      </Box>
       <Grid className="chapterList" templateColumns="repeat(5, 1fr)" gap={5} p="6">
         {
           data.paths.map((chapter, index) => (
