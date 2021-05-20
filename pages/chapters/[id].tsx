@@ -1,8 +1,7 @@
 import { getAllChapterIds, getChapterData } from '../../lib/chapters'
-import { Box, Heading, Flex, Text } from "@chakra-ui/react"
 import React, { useEffect, useCallback, useRef } from 'react';
 import { VerseSlide } from '../../components/VerseSlide';
-import { convertHTMLtoVerses } from '../../lib/converter';
+import { convertHTMLtoVerses, getNextChapterName } from '../../lib/converter';
 
 export default function Chapter({
   verseList
@@ -15,11 +14,14 @@ export default function Chapter({
   const handleKeyDown = useCallback((event) => {
     let hash = Number(window.location.hash.replace('#', ''))
     if (event.keyCode === 40) {
-      if (hash >= verseList.length) {
+      if (hash < verseList.length) {
         window.location.hash = String(hash + 1)
         event.preventDefault();
       } else {
-        // Go to next chapter
+        // Go to next chapter or book.
+        let address = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+        document.removeEventListener("keydown", handleKeyDown, false);
+        window.location.href = '/chapters/' + getNextChapterName(address)
         event.preventDefault();
       }
     } else if (event.keyCode === 38) {

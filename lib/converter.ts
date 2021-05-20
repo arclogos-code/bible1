@@ -1,10 +1,31 @@
 import { map, bookList } from "./data"
 
-export function getChapterNameKR(name: string) {
-  let verse = /\d+$/.exec(name)[0]
-  name = name.replace(/\d+$/, '')
-  let index = bookList.indexOf(name)
-  return map[index].name + ' ' + verse
+function addressToBookAndIndex(address: string) {
+  const chapterIndex = Number(/\d+$/.exec(address)[0])
+  const bookName = address.replace(/\d+$/, '')
+  return {
+    bookName, chapterIndex
+  }
+}
+
+export function getNextChapterName(address: string) {
+  const object = addressToBookAndIndex(address)
+  const bookIndex = bookList.indexOf(object.bookName)
+
+  let newAddress = ''
+  map[bookIndex].chapters
+  if (object.chapterIndex < map[bookIndex].chapters) {
+    newAddress = object.bookName + String(object.chapterIndex + 1)
+  } else {
+    newAddress = bookList[bookIndex + 1] + '1'
+  }
+  return newAddress
+}
+
+export function getChapterNameKR(address: string) {
+  const object = addressToBookAndIndex(address)
+  const bookIndex = bookList.indexOf(object.bookName)
+  return map[bookIndex].name + ' ' + object.chapterIndex
 }
 
 export function convertHTMLtoVerses(raw: string) {
