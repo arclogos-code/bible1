@@ -15,7 +15,7 @@ export default function Home(props) {
           Bible-slide.com
         </Heading>
         <Box mt="6" maxW="300px">
-          <Search placeholder="수 23" />
+          <Search placeholder="수 23" tabIndex={0} />
         </Box>
       </Box>
       <Box id="chapters" pt="150px">
@@ -23,7 +23,7 @@ export default function Home(props) {
           {
             props.paths.map((chapter, index) => (
               <Flex w="200px" py="6" key={index}>
-                <Link href={`/chapters/${chapter.params.id}`}>
+                <Link href={`/chapters/${chapter.params.id}`} tabIndex={1}>
                   <Button className="chapter" colorScheme="teal">
                     {props.names[index]}
                   </Button>
