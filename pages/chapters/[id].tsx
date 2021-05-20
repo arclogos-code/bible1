@@ -1,5 +1,5 @@
 import { getAllChapterIds, getChapterData } from '../../lib/chapters'
-import { Box, Heading, Text } from "@chakra-ui/react"
+import { Box, Heading, Flex, Text } from "@chakra-ui/react"
 
 export default function Chapter({ verseList }) {
   return (
@@ -7,14 +7,16 @@ export default function Chapter({ verseList }) {
       <Text fontSize="3xl">
         {
           verseList.map(({ number, verse }, index) => (
-            <Box key={number} p="6">
-              <Text>
-                {number}
-              </Text>
-              <Text>
-                {verse}
-              </Text>
-            </Box>
+            <Flex key={number} p="6" v="100vw" h="100vh" justifyContent="center" alignItems="center">
+              <Flex>
+                <Text h="fit-content" fontSize="4xl" mr="10" mt="3">
+                  {number}
+                </Text>
+                <Text h="fit-content" fontSize="6xl" fontWeight="semibold" w="80vw">
+                  {verse}
+                </Text>
+              </Flex>
+            </Flex>
           ))
         }
       </Text>
