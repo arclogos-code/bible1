@@ -15,7 +15,7 @@ export default function Home(props) {
           Bible-slide.com
         </Heading>
         <Box mt="6" maxW="300px">
-          <Search />
+          <Search placeholder="수 23" />
         </Box>
       </Box>
       <Box id="chapters" pt="150px">

@@ -2,7 +2,7 @@ import { Input } from "@chakra-ui/react"
 import React, { useEffect } from "react";
 import List from 'list.js'
 
-export default function createSearchFilter() {
+export default function SearchFilterInput(props) {
 
   const listObject = new List('chapters', {
     valueNames: ['chapter']
@@ -14,6 +14,6 @@ export default function createSearchFilter() {
   };
 
   return (
-    <Input className="search" onKeyUp={handle} />
+    <Input className="search" onKeyUp={handle} {...props} />
   )
 }
