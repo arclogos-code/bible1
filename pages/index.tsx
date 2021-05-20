@@ -7,7 +7,7 @@ const Search = dynamic(() => import('../components/Search'), {
   ssr: false
 })
 
-export default function Home(props: {}) {
+export default function Home(props) {
   return (
     <Box>
       <Box p="6" position="fixed" bg="gray.900" zIndex="100" w="full">
