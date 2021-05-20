@@ -19,12 +19,12 @@ export default function Home(props) {
         </Box>
       </Box>
       <Box id="chapters" pt="150px">
-        <Flex className="list" p="6" wrap="wrap" overflow="scroll" h="calc(100vh - 150px)">
+        <Flex className="list" px="6" wrap="wrap" overflow="scroll" h="calc(100vh - 150px)">
           {
             props.paths.map((chapter, index) => (
               <Flex w="200px" py="6" key={index}>
-                <Link href={`/chapters/${chapter.params.id}`} tabIndex={1}>
-                  <Button className="chapter" colorScheme="teal">
+                <Link href={`/chapters/${chapter.params.id}`} tabIndex={1} h="fit-content" w="fit-content">
+                  <Button className="chapter" colorScheme="black" size="md" fontSize="x-large">
                     {props.names[index]}
                   </Button>
                 </Link>
