@@ -2,6 +2,7 @@ import { getAllChapterIds, getChapterData } from '../../lib/chapters'
 import React, { useEffect, useCallback, useRef } from 'react';
 import { VerseSlide } from '../../components/VerseSlide';
 import VerseCounter from '../../components/VerseCounter';
+import { toggleFullScreen } from '../../lib/window';
 import { Text } from "@chakra-ui/react"
 import { convertHTMLtoVerses, getNextChapterName, getAddressFromPath, getChapterNameKR } from '../../lib/converter';
 
@@ -44,6 +45,9 @@ export default function Chapter({
         });
         event.preventDefault();
       }
+    } else if (event.keyCode == 13) {
+      toggleFullScreen();
+      return false;
     }
   }, []);
 
@@ -62,7 +66,7 @@ export default function Chapter({
         ))
       }
       <Text onClick={() => { window.location.href = '/' }}
-        position="fixed" right="70px" bottom="50px" fontSize="2xl" fontWeight="book" cursor="pointer">
+        position="fixed" right="70px" bottom="50px" fontSize="3vh" fontWeight="book" cursor="pointer">
         {name}:<VerseCounter ref={verseCounter}></VerseCounter>
       </Text>
     </ >
