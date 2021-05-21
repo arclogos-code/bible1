@@ -23,7 +23,7 @@ export default function Home(props) {
     <Box>
       <Box p="6" position="fixed" bg="black" zIndex="100" w="full">
         <Heading >
-          Bible-slide.com
+          Bible1.app
         </Heading>
         <HStack mt="6" maxW="300px">
           <Search placeholder="수 23" tabIndex={1} />
