@@ -22,7 +22,7 @@ export default function Home(props) {
         <Flex className="list" px="6" wrap="wrap" overflow="scroll" h="calc(100vh - 150px)">
           {
             props.paths.map((chapter, index) => (
-              <Flex w="200px" py="6" key={index}>
+              <Flex w={{ base: '40vw', md: '200px' }} py="6" key={index}>
                 <Link href={`/chapters/${chapter.params.id}`} tabIndex={1} h="fit-content" w="fit-content">
                   <Button className="chapter" colorScheme="black" size="md" fontSize="x-large">
                     {props.names[index]}
