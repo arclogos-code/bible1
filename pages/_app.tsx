@@ -1,8 +1,14 @@
 import * as React from "react"
 import { ChakraProvider, Box } from "@chakra-ui/react"
 import Head from 'next/head'
+import TagManager from 'react-gtm-module'
 
 function MyApp({ Component, pageProps }) {
+  React.useEffect(() => {
+    TagManager.initialize({
+      gtmId: 'GTM-TCBLM7Z'
+    })
+  })
   return (
     <ChakraProvider>
       <Head>
