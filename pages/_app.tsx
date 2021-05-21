@@ -7,7 +7,7 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
   React.useEffect(() => {
     TagManager.initialize({
-      gtmId: 'GTM-TCBLM7Z'
+      gtmId: 'GTM-WMTLFQ9'
     })
   })
   return (
