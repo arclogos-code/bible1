@@ -39,13 +39,13 @@ export default function Home(props) {
               <PopoverHeader>사용법</PopoverHeader>
               <PopoverBody>
                 - 검색화면<br />
-                "요한복음 15장"은 "요 15"으로 빠른 검색<br />
-                이후 탭과 엔터로 선택<br />
+                "여호수아 23장"은 "수 23"으로 빠른 검색<br />
+                탭과 엔터로 바로 선택<br />
                 <br />
-                - 말씀 화면<br />
-                엔터 - 전체화면<br />
-                위/아래 - 절 변경<br />
-                오른쪽 하단 구절 클릭 - 검색화면으로 복귀
+                - 말씀화면<br />
+                ENTER - 전체화면<br />
+                ⬆️⬇️ - 절 변경<br />
+                오른쪽 밑 구절 - 검색화면
               </PopoverBody>
             </PopoverContent>
           </Popover>
