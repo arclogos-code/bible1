@@ -26,7 +26,7 @@ export default function Home(props) {
           Bible-slide.com
         </Heading>
         <HStack mt="6" maxW="300px">
-          <Search placeholder="수 23" tabIndex={0} />
+          <Search placeholder="수 23" tabIndex={1} />
           <Popover placement="right-start">
             <PopoverTrigger>
               <Button colorScheme="black">
