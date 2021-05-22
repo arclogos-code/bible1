@@ -14,10 +14,10 @@ function MyApp({ Component, pageProps }) {
     <ChakraProvider>
       <Head>
         <meta charSet="euc-kr" />
-        <meta title="Bible-slide.com" />
+        <meta title="Bible1.app" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Bible-slide.com" />
-        <meta property="og:title" content="Bible-slide.com" />
+        <meta property="og:site_name" content="Bible1.app" />
+        <meta property="og:title" content="Bible1.app" />
         <meta property="og:description" content="Bible PPT" />
         <meta property="og:image" content="/ogimage.png" />
         <link rel="shortcut icon" type="image/png" href="https://res.cloudinary.com/lco-linco/image/upload/b_rgb:423dd9,c_fill,g_west,h_100,w_100/v1619264171/linco_xhyhbd.png" />
