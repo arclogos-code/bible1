@@ -40,7 +40,7 @@ export default function Home(props) {
               <PopoverHeader>사용법</PopoverHeader>
               <PopoverBody>
                 - 검색화면<br />
-                "여호수아 23장"은 "수 23"으로 빠른 검색<br />
+                "여호수아 23장"은 "수23"으로 빠른 검색<br />
                 탭과 엔터로 바로 선택<br />
                 <br />
                 - 말씀화면<br />
