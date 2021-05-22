@@ -4,17 +4,20 @@ import { VerseSlide } from '../../components/VerseSlide';
 import VerseCounter from '../../components/VerseCounter';
 import { toggleFullScreen } from '../../lib/window';
 import { Text } from "@chakra-ui/react"
-import { convertHTMLtoVerses, getNextChapterName, getAddressFromPath, getChapterNameKR } from '../../lib/converter';
+import { convertHTMLtoVerses, getNextChapterName, getAddressFromPath, getChapterNameKRAndIndex } from '../../lib/converter';
 
 export default function Chapter({
   verseList,
-  name
+  data
 }: {
   verseList: [{
     number: string,
     verse: string
   }],
-  name: string
+  data: {
+    nameKR: string,
+    chapterIndex: string
+  }
 }) {
   const verseCounter = useRef(null)
 
@@ -67,7 +70,7 @@ export default function Chapter({
       }
       <Text onClick={() => { window.location.href = '/' }}
         position="fixed" right="7vh" bottom="5vh" fontSize="3vh" fontWeight="book" cursor="pointer">
-        {name}:<VerseCounter ref={verseCounter}></VerseCounter>
+        {data.nameKR + ' ' + data.chapterIndex}:<VerseCounter ref={verseCounter}></VerseCounter>
       </Text>
     </ >
   )
@@ -84,11 +87,11 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const chapterData = await getChapterData(params.id)
   const verseList = convertHTMLtoVerses(chapterData.contentHtml)
-  const name = getChapterNameKR(params.id)
+  const data = getChapterNameKRAndIndex(params.id)
   return {
     props: {
       verseList,
-      name
+      data
     }
   }
 }

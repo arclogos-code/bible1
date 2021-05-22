@@ -1,5 +1,5 @@
 import {
-  Heading, Box, Button, Link, Flex,
+  Heading, Box, Button, Link, Flex, Text,
   Popover,
   PopoverTrigger,
   PopoverContent,
@@ -12,7 +12,8 @@ import {
 import { InfoIcon } from '@chakra-ui/icons'
 import { getAllChapterIds, getChapterData } from '../lib/chapters'
 import dynamic from 'next/dynamic'
-import { getChapterNameKR } from '../lib/converter'
+import { getChapterNameKRAndIndex } from '../lib/converter'
+import { bookMap } from '../lib/data'
 
 const Search = dynamic(() => import('../components/Search'), {
   ssr: false
@@ -26,7 +27,7 @@ export default function Home(props) {
           Bible1.app
         </Heading>
         <HStack mt="6" maxW="300px">
-          <Search placeholder="수 23" tabIndex={1} />
+          <Search placeholder="수23" tabIndex={1} />
           <Popover placement="right-start">
             <PopoverTrigger>
               <Button colorScheme="black">
@@ -57,9 +58,12 @@ export default function Home(props) {
             props.paths.map((chapter, index) => (
               <Flex w={{ base: '40vw', md: '200px' }} py="6" key={index}>
                 <Link href={`/chapters/${chapter.params.id}`} tabIndex={1} h="fit-content" w="fit-content">
-                  <Button className="chapter" colorScheme="black" size="md" fontSize="x-large">
-                    {props.names[index]}
+                  <Button className="chapterName" colorScheme="black" size="md" fontSize="x-large">
+                    {props.names[index].nameKR + ' ' + props.names[index].chapterIndex}
                   </Button>
+                  <Text display="none" className="chapterNameAlt" colorScheme="black">
+                    {props.bookMap[props.names[index].bookIndex].short + props.names[index].chapterIndex}
+                  </Text>
                 </Link>
               </Flex>
             ))
@@ -74,12 +78,13 @@ export async function getStaticProps({ params }) {
   const paths = getAllChapterIds()
   const names = []
   paths.map((object, index) => (
-    names.push(getChapterNameKR(object.params.id))
+    names.push(getChapterNameKRAndIndex(object.params.id))
   ))
   return {
     props: {
       paths,
-      names
+      names,
+      bookMap
     }
   }
 }

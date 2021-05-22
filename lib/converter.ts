@@ -1,4 +1,4 @@
-import { map, bookList } from "./data"
+import { bookMap, bookList } from "./data"
 
 function addressToBookAndIndex(address: string) {
   const chapterIndex = Number(/\d+$/.exec(address)[0])
@@ -17,8 +17,8 @@ export function getNextChapterName(address: string) {
   const bookIndex = bookList.indexOf(object.bookName)
 
   let newAddress = ''
-  map[bookIndex].chapters
-  if (object.chapterIndex < map[bookIndex].chapters) {
+  bookMap[bookIndex].chapters
+  if (object.chapterIndex < bookMap[bookIndex].chapters) {
     newAddress = object.bookName + String(object.chapterIndex + 1)
   } else {
     newAddress = bookList[bookIndex + 1] + '1'
@@ -26,10 +26,10 @@ export function getNextChapterName(address: string) {
   return newAddress
 }
 
-export function getChapterNameKR(address: string) {
+export function getChapterNameKRAndIndex(address: string) {
   const object = addressToBookAndIndex(address)
   const bookIndex = bookList.indexOf(object.bookName)
-  return map[bookIndex].name + ' ' + object.chapterIndex
+  return { nameKR: bookMap[bookIndex].name, chapterIndex: object.chapterIndex, bookIndex: bookIndex }
 }
 
 export function convertHTMLtoVerses(raw: string) {

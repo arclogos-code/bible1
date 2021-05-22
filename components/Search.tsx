@@ -4,7 +4,7 @@ import List from 'list.js'
 export default function SearchFilterInput(props) {
 
   const listObject = new List('chapters', {
-    valueNames: ['chapter']
+    valueNames: ['chapterName', 'chapterNameAlt']
   });
 
   const handle = (event) => {
