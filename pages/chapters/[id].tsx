@@ -69,7 +69,7 @@ export default function Chapter({
         ))
       }
       <Text onClick={() => { window.location.href = '/' }}
-        position="fixed" right="7vh" bottom="5vh" fontSize="3vh" fontWeight="book" cursor="pointer">
+        position="fixed" right="7vh" bottom="5vh" fontSize="4vh" fontWeight="semibold" cursor="pointer">
         {data.nameKR + ' ' + data.chapterIndex}:<VerseCounter ref={verseCounter}></VerseCounter>
       </Text>
     </ >
