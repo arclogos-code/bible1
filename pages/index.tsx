@@ -62,6 +62,9 @@ export default function Home(props) {
                     {props.names[index].nameKR + ' ' + props.names[index].chapterIndex}
                   </Button>
                   <Text display="none" className="chapterNameAlt" colorScheme="black">
+                    {props.names[index].nameKR + props.names[index].chapterIndex}
+                  </Text>
+                  <Text display="none" className="chapterNameAltShort" colorScheme="black">
                     {props.bookMap[props.names[index].bookIndex].short + props.names[index].chapterIndex}
                   </Text>
                 </Link>
