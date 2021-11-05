@@ -20,7 +20,7 @@ export const VerseSlide = ({
       alignItems="flex-start"
     >
       <Flex
-        mt="10vh"
+        mt="5vh"
         fontWeight="semibold"
       >
         <Text
