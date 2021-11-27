@@ -5,6 +5,7 @@ import VerseCounter from '../../components/VerseCounter'
 import { toggleFullScreen } from '../../lib/window'
 import { Text } from "@chakra-ui/react"
 import { convertHTMLtoVerses, getNextChapterName, getAddressFromPath, getChapterNameKRAndIndex } from '../../lib/converter'
+import { VerseNav } from '../../components/VerseNav'
 
 export default function Chapter({
   verseList,
@@ -80,25 +81,22 @@ export default function Chapter({
     }
   }, [verse])
 
-  return (
-    <>
-      {
-        verseList.map(({ number, verse }, index) => (
-          <VerseSlide props={{ number, verse }} key={number} />
-        ))
-      }
-      <Text
-        onClick={() => { window.location.href = '/' }}
-        position="fixed"
-        right="10vh"
-        bottom="7vh"
-        fontSize="5vh"
-        fontWeight="semibold"
-        cursor="pointer">
-        {data.nameKR + ' ' + data.chapterIndex}:<VerseCounter ref={verseCounter} />
-      </Text>
-    </ >
-  )
+  return <>
+    <VerseNav total={verseList.length} />
+    {verseList.map(({ number, verse }, index) => (
+      <VerseSlide props={{ number, verse }} key={number} />
+    ))}
+    <Text
+      onClick={() => { window.location.href = '/' }}
+      position="fixed"
+      right="10vh"
+      bottom="7vh"
+      fontSize="5vh"
+      fontWeight="semibold"
+      cursor="pointer">
+      {data.nameKR + ' ' + data.chapterIndex}:<VerseCounter ref={verseCounter} />
+    </Text>
+  </>
 }
 
 export async function getStaticPaths() {
