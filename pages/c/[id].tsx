@@ -1,22 +1,31 @@
+/** @format */
+
 import { getAllChapterIds, getChapterData } from '../../lib/chapters'
 import React, { useEffect, useCallback, useRef } from 'react'
 import { VerseSlide } from '../../components/VerseSlide'
 import VerseCounter from '../../components/VerseCounter'
 import { toggleFullScreen } from '../../lib/window'
-import { Text } from "@chakra-ui/react"
-import { convertHTMLtoVerses, getNextChapterName, getAddressFromPath, getChapterNameKRAndIndex } from '../../lib/converter'
+import { Text } from '@chakra-ui/react'
+import {
+  convertHTMLtoVerses,
+  getNextChapterName,
+  getAddressFromPath,
+  getChapterNameKRAndIndex
+} from '../../lib/converter'
 import { VerseNav } from '../../components/VerseNav'
 
 export default function Chapter({
   verseList,
   data
 }: {
-  verseList: [{
-    number: string,
-    verse: string
-  }],
+  verseList: [
+    {
+      number: string
+      verse: string
+    }
+  ]
   data: {
-    nameKR: string,
+    nameKR: string
     chapterIndex: string
   }
 }) {
@@ -30,20 +39,19 @@ export default function Chapter({
         setVerse(verse + 1)
         event.preventDefault()
       } else {
-
         // Go to next chapter or book.
-        document.removeEventListener("keydown", handleKeyDown, false)
-        window.location.href = '/chapters/' + getNextChapterName(getAddressFromPath(window.location.pathname))
+        document.removeEventListener('keydown', handleKeyDown, false)
+        window.location.href =
+          '/c/' +
+          getNextChapterName(getAddressFromPath(window.location.pathname))
         event.preventDefault()
       }
-
     } else if (event.keyCode === 38) {
       // Arrow up
       if (verse > 1) {
         setVerse(verse - 1)
         event.preventDefault()
       }
-
     } else if (event.keyCode == 13) {
       toggleFullScreen()
       setTimeout(() => {
@@ -73,30 +81,35 @@ export default function Chapter({
       number: verse
     })
 
-    document.addEventListener("keydown", handleKeyDown, false)
-    window.addEventListener("hashchange", hashChange, false)
+    document.addEventListener('keydown', handleKeyDown, false)
+    window.addEventListener('hashchange', hashChange, false)
     return () => {
-      document.removeEventListener("keydown", handleKeyDown, false)
-      window.removeEventListener("hashchange", hashChange, false)
+      document.removeEventListener('keydown', handleKeyDown, false)
+      window.removeEventListener('hashchange', hashChange, false)
     }
   }, [verse])
 
-  return <>
-    <VerseNav total={verseList.length} />
-    {verseList.map(({ number, verse }, index) => (
-      <VerseSlide props={{ number, verse }} key={number} />
-    ))}
-    <Text
-      onClick={() => { window.location.href = '/' }}
-      position="fixed"
-      right="10vh"
-      bottom="7vh"
-      fontSize="5vh"
-      fontWeight="semibold"
-      cursor="pointer">
-      {data.nameKR + ' ' + data.chapterIndex}:<VerseCounter ref={verseCounter} />
-    </Text>
-  </>
+  return (
+    <>
+      <VerseNav total={verseList.length} />
+      {verseList.map(({ number, verse }, index) => (
+        <VerseSlide props={{ number, verse }} key={number} />
+      ))}
+      <Text
+        onClick={() => {
+          window.location.href = '/'
+        }}
+        position='fixed'
+        right='10vh'
+        bottom='7vh'
+        fontSize='5vh'
+        fontWeight='semibold'
+        cursor='pointer'>
+        {data.nameKR + ' ' + data.chapterIndex}:
+        <VerseCounter ref={verseCounter} />
+      </Text>
+    </>
+  )
 }
 
 export async function getStaticPaths() {
