@@ -15,6 +15,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <Head>
+        <title>Bible1.app</title>
         <meta charSet="euc-kr" />
         <meta title="Bible1.app" />
         <meta property="og:type" content="website" />
