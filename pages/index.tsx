@@ -71,17 +71,17 @@ export default function Home(props) {
         </Formik>
       </Stack>
       <HStack pos='fixed' bottom={3} right={3}>
-        <Link href='/original'>
-          <a>
-            <Button p={3} variant='link'>
-              Original
-            </Button>
-          </a>
-        </Link>
         <Link href='/bulk'>
           <a>
             <Button p={3} variant='link'>
               Bulk
+            </Button>
+          </a>
+        </Link>
+        <Link href='/original'>
+          <a>
+            <Button p={3} variant='link'>
+              Original
             </Button>
           </a>
         </Link>
