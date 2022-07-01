@@ -21,7 +21,7 @@ export default function Home(props) {
   const [result, setResult] = useState(null)
   return (
     <Flex h='100vh' align='center' justify='center'>
-      <Stack spacing={4}>
+      <Stack spacing={4} p={6}>
         <Heading>Bulk search</Heading>
         <Formik
           validationSchema={BulkSchema}
@@ -60,7 +60,6 @@ export default function Home(props) {
                   }
                 })
               })
-
               console.log(result)
 
               // window.location.href = `/c/${bookEN}${chapter}#${verse}`
@@ -97,19 +96,27 @@ export default function Home(props) {
             </Form>
           )}
         </Formik>
-        <Stack>
-          {result?.map((data, index) => {
-            return (
-              <HStack key={index}>
-                <Text w={20}>
-                  {data.bookShort}
-                  {data.chapter}:{data.verse}
-                </Text>
-                <Text key={index}>{data.text}</Text>
-              </HStack>
-            )
-          })}
-        </Stack>
+        {result?.length && (
+          <>
+            {' '}
+            <Stack spacing={4} h='50vh' overflow='scroll'>
+              {result?.map((data, index) => {
+                return (
+                  <HStack align='flex-start' key={index}>
+                    <Text w={100} flexShrink={0}>
+                      {data.bookShort}
+                      {data.chapter}:{data.verse}
+                    </Text>
+                    <Text maxW={500} key={index}>
+                      {data.text}
+                    </Text>
+                  </HStack>
+                )
+              })}
+            </Stack>
+            <Text color='green'>Scroll down if many</Text>
+          </>
+        )}
       </Stack>
       <HStack pos='fixed' bottom={3} right={3}>
         <Link href='/'>
