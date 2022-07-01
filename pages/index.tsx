@@ -12,12 +12,10 @@ import {
 } from '@chakra-ui/react'
 import { Field, Form, Formik } from 'formik'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { SearchSchema } from '../lib/schema'
 import { bookList, bookMap } from '../lib/data'
 
 export default function Home(props) {
-  const router = useRouter()
   return (
     <Flex h='100vh' align='center' justify='center'>
       <Stack spacing={4}>
@@ -28,7 +26,7 @@ export default function Home(props) {
           onSubmit={(values, actions) => {
             setTimeout(() => {
               const re = /(\W+)(\d+):(\d+)/g
-              const result = re.exec(values.query)
+              const result = re.exec(values.query?.trim())
               console.log(result)
               const bookShort = result[1]
               const chapter = result[2]
@@ -72,7 +70,7 @@ export default function Home(props) {
           )}
         </Formik>
       </Stack>
-      <Flex pos='fixed' bottom={3} right={3}>
+      <HStack pos='fixed' bottom={3} right={3}>
         <Link href='/original'>
           <a>
             <Button p={3} variant='link'>
@@ -80,7 +78,14 @@ export default function Home(props) {
             </Button>
           </a>
         </Link>
-      </Flex>
+        <Link href='/bulk'>
+          <a>
+            <Button p={3} variant='link'>
+              Bulk
+            </Button>
+          </a>
+        </Link>
+      </HStack>
     </Flex>
   )
 }
