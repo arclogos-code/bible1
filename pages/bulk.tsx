@@ -26,45 +26,43 @@ export default function Home(props) {
         <Formik
           validationSchema={BulkSchema}
           initialValues={{ query: '' }}
-          onSubmit={(values, actions) => {
-            setTimeout(() => {
-              const input = /[가-힣]+\d+:\d+-*\d*/g
-              const multiple = values.query.match(input)
-              console.log(multiple)
+          onSubmit={async (values, actions) => {
+            const input = /[가-힣]+\d+:\d+-*\d*/g
+            const multiple = values.query.match(input)
+            console.log(multiple)
 
-              setResult([])
-              multiple.map(async (query: string) => {
-                const re = /(\W+)(\d+):(\d+)/g
-                const result = re.exec(query)
-                console.log(result)
-                const bookShort = result[1]
-                const chapter = result[2]
-                const verse = result[3]
-
-                // Convert book short into book index, then EN.
-                let index = 0
-                bookMap.map((book, _index) => {
-                  if (book.short == bookShort) index = _index
-                })
-                const bookEN = bookList[index]
-
-                // Get
-                const res = await fetch(`/api/get?chapter=${bookEN}${chapter}`)
-                const data = await res.json()
-                data.map((v) => {
-                  if (v.number == verse) {
-                    setResult((prev) => [
-                      ...prev,
-                      { bookShort, chapter, verse, text: v.verse }
-                    ])
-                  }
-                })
-              })
+            setResult([])
+            for (const query of multiple) {
+              const re = /(\W+)(\d+):(\d+)/g
+              const result = re.exec(query)
               console.log(result)
+              const bookShort = result[1]
+              const chapter = result[2]
+              const verse = result[3]
 
-              // window.location.href = `/c/${bookEN}${chapter}#${verse}`
-              actions.setSubmitting(false)
-            }, 1000)
+              // Convert book short into book index, then EN.
+              let index = 0
+              bookMap.map((book, _index) => {
+                if (book.short == bookShort) index = _index
+              })
+              const bookEN = bookList[index]
+
+              // Get
+              const res = await fetch(`/api/get?chapter=${bookEN}${chapter}`)
+              const data = await res.json()
+              await data.map((v) => {
+                if (v.number == verse) {
+                  setResult((prev) => [
+                    ...prev,
+                    { bookShort, chapter, verse, text: v.verse }
+                  ])
+                }
+              })
+            }
+            console.log(result)
+
+            // window.location.href = `/c/${bookEN}${chapter}#${verse}`
+            actions.setSubmitting(false)
           }}>
           {(props) => (
             <Form>
