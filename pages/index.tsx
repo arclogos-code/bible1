@@ -55,11 +55,10 @@ export default function Home(props) {
                         placeholder='슥4:1'
                       />
                       <Button
-                        colorScheme='blackAlpha'
                         type='submit'
                         isLoading={props.isSubmitting}
                         isDisabled={!props.isValid}>
-                        Search
+                        검색
                       </Button>
                     </HStack>
                     <FormErrorMessage>{form.errors.query}</FormErrorMessage>

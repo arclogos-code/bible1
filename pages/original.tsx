@@ -30,7 +30,7 @@ const Search = dynamic(() => import('../components/Search'), {
 export default function Home(props) {
   return (
     <Box>
-      <Box p='6' position='fixed' bg='black' zIndex='100' w='full'>
+      <Box p='6' position='fixed' zIndex='100' w='full'>
         <Link href='/'>
           <a>
             <Heading>Bible1.app</Heading>
@@ -44,8 +44,8 @@ export default function Home(props) {
                 <InfoIcon />
               </Button>
             </PopoverTrigger>
-            <PopoverContent color='white' bg='black' borderColor='gray.300'>
-              <PopoverArrow bg='black' />
+            <PopoverContent>
+              <PopoverArrow />
               <PopoverCloseButton />
               <PopoverHeader>사용법</PopoverHeader>
               <PopoverBody>

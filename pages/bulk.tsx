@@ -80,7 +80,6 @@ export default function Home(props) {
                         placeholder='요10:10, 눅7:11, 눅7:14, 요10:1, 눅7:16, 마1:21'
                       />
                       <Button
-                        colorScheme='blackAlpha'
                         type='submit'
                         isLoading={props.isSubmitting}
                         isDisabled={!props.isValid}>

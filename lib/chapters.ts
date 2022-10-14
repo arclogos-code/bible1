@@ -1,7 +1,9 @@
+/** @format */
+
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import remark from 'remark'
+import { remark } from 'remark'
 import html from 'remark-html'
 import iconv from 'iconv-lite'
 
@@ -10,7 +12,7 @@ const chaptersDirectory = path.join(process.cwd(), 'chapters')
 export function getSortedChaptersData() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(chaptersDirectory)
-  const allChaptersData = fileNames.map(fileName => {
+  const allChaptersData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.txt$/, '')
 
@@ -33,7 +35,7 @@ export function getSortedChaptersData() {
 
 export function getAllChapterIds() {
   const fileNames = fs.readdirSync(chaptersDirectory)
-  return fileNames.map(fileName => {
+  return fileNames.map((fileName) => {
     return {
       params: {
         id: fileName.replace(/\.txt$/, '')
@@ -46,7 +48,7 @@ export async function getChapterData(id) {
   const fullPath = path.join(chaptersDirectory, `${id}.txt`)
   const fileContents = fs.readFileSync(fullPath)
 
-  const euckr = iconv.decode(fileContents, 'euc-kr');
+  const euckr = iconv.decode(fileContents, 'euc-kr')
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(euckr)
